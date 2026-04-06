@@ -45,14 +45,14 @@ export const AuthLayout: AuthLayoutProps = ({ children, authenticated }) => {
             });
             const data: APIResponse = await response.json();
 
+            setIsLoading(false);
             if (response.ok && !data.error) {
-                localStorage.setItem("profile", JSON.stringify(data));
+                sessionStorage.setItem("profile", JSON.stringify(data));
                 setIsAuthenticated(true);
             } else {
                 localStorage.removeItem("profile");
                 setIsAuthenticated(false);
             }
-
         }
 
         checkAuth();
